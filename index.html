@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Alle iPhone-Apps von Caspar Tietmeyer auf einen Blick.">
+  <title>Caspar Tietmeyer – Apps</title>
+
+  <style>
+    :root{
+      color-scheme: dark;
+      --bg:#080c18;
+      --bg-soft:#0e1425;
+      --panel:rgba(18,25,45,.72);
+      --panel-solid:#12192d;
+      --text:#f7f8fc;
+      --muted:#aeb7cc;
+      --subtle:#747f98;
+      --line:rgba(255,255,255,.09);
+      --line-strong:rgba(255,255,255,.16);
+      --accent:#91a7ff;
+      --max:1180px;
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --shadow:0 28px 80px rgba(0,0,0,.34);
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      background:var(--bg);
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 13% -5%, rgba(76,101,255,.24), transparent 32rem),
+        radial-gradient(circle at 91% 9%, rgba(89,224,198,.14), transparent 29rem),
+        linear-gradient(180deg,#0b1020 0%,#080c18 56%,#070a13 100%);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    button,input,a{-webkit-tap-highlight-color:transparent}
+    img{display:block;max-width:100%}
+    ::selection{background:rgba(145,167,255,.28)}
+
+    .noise{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    .shell{
+      width:min(var(--max),calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      background:rgba(8,12,24,.70);
+      backdrop-filter:blur(20px) saturate(150%);
+      -webkit-backdrop-filter:blur(20px) saturate(150%);
+    }
+
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      text-decoration:none;
+      font-weight:820;
+      letter-spacing:-.025em;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:13px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),
+        #16203a;
+      box-shadow:0 12px 30px rgba(0,0,0,.24);
+      font-size:15px;
+      letter-spacing:-.06em;
+    }
+
+    .brand-copy{
+      display:flex;
+      flex-direction:column;
+      line-height:1.14;
+    }
+
+    .brand-copy strong{font-size:16px}
+    .brand-copy span{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:650;
+      letter-spacing:.02em;
+    }
+
+    .nav-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 13px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,255,255,.045);
+      font-size:13px;
+      font-weight:750;
+    }
+
+    .nav-badge::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#72e1c2;
+      box-shadow:0 0 0 5px rgba(114,225,194,.10);
+    }
+
+    .hero{
+      position:relative;
+      padding:106px 0 70px;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      top:22px;
+      left:50%;
+      width:min(920px,90vw);
+      height:420px;
+      transform:translateX(-50%);
+      z-index:-1;
+      background:radial-gradient(ellipse,rgba(87,113,255,.17),transparent 68%);
+      filter:blur(22px);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:22px;
+      color:#bcc8ff;
+      font-size:13px;
+      font-weight:820;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:31px;
+      height:1px;
+      background:linear-gradient(90deg,#7f95ff,transparent);
+    }
+
+    h1{
+      max-width:900px;
+      margin:0;
+      font-size:clamp(48px,7.2vw,90px);
+      line-height:.98;
+      letter-spacing:-.065em;
+      text-wrap:balance;
+    }
+
+    .headline-accent{
+      background:linear-gradient(100deg,#ffffff 0%,#aebdff 44%,#70dfc3 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero-bottom{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(300px,.46fr);
+      align-items:end;
+      gap:50px;
+      margin-top:34px;
+    }
+
+    .hero-lead{
+      max-width:710px;
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(17px,2vw,21px);
+      line-height:1.65;
+    }
+
+    .hero-stat{
+      justify-self:end;
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      color:var(--muted);
+    }
+
+    .hero-stat strong{
+      color:var(--text);
+      font-size:46px;
+      line-height:1;
+      letter-spacing:-.05em;
+    }
+
+    .hero-stat span{
+      font-size:13px;
+      font-weight:760;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+    .apps-section{
+      padding:18px 0 112px;
+    }
+
+    .app-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+
+    .app-card{
+      --card-accent:#91a7ff;
+      position:relative;
+      min-height:362px;
+      display:flex;
+      flex-direction:column;
+      isolation:isolate;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      text-decoration:none;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)),
+        var(--panel);
+      box-shadow:0 18px 52px rgba(0,0,0,.19);
+      transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .28s ease,box-shadow .28s ease;
+    }
+
+    .app-card::before{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      width:240px;
+      height:240px;
+      top:-112px;
+      right:-80px;
+      border-radius:50%;
+      background:var(--card-accent);
+      opacity:.13;
+      filter:blur(4px);
+      transition:transform .4s ease,opacity .3s ease;
+    }
+
+    .app-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.12));
+      pointer-events:none;
+    }
+
+    .app-card:hover,
+    .app-card:focus-visible{
+      transform:translateY(-7px);
+      border-color:color-mix(in srgb,var(--card-accent) 38%,rgba(255,255,255,.18));
+      box-shadow:var(--shadow);
+      outline:none;
+    }
+
+    .app-card:hover::before,
+    .app-card:focus-visible::before{
+      transform:scale(1.18) translate(-5px,8px);
+      opacity:.18;
+    }
+
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding:26px 26px 0;
+    }
+
+    .icon-shell{
+      position:relative;
+      width:88px;
+      height:88px;
+      flex:0 0 88px;
+      border-radius:22px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.03)),
+        #171f34;
+      box-shadow:0 18px 36px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+
+    .app-icon{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity .28s ease;
+    }
+
+    .app-icon.loaded{opacity:1}
+
+    .fallback-icon{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 20% 12%,rgba(255,255,255,.22),transparent 36%),
+        linear-gradient(145deg,var(--card-accent),#151c30 115%);
+      color:#fff;
+      font-size:39px;
+      font-weight:850;
+      text-shadow:0 3px 12px rgba(0,0,0,.18);
+    }
+
+    .external{
+      width:40px;
+      height:40px;
+      display:grid;
+      place-items:center;
+      border:1px solid var(--line);
+      border-radius:50%;
+      color:var(--muted);
+      background:rgba(255,255,255,.04);
+      transition:transform .25s ease,color .25s ease,background .25s ease;
+    }
+
+    .external svg{width:18px;height:18px}
+
+    .app-card:hover .external,
+    .app-card:focus-visible .external{
+      transform:translate(2px,-2px);
+      color:#fff;
+      background:color-mix(in srgb,var(--card-accent) 30%,rgba(255,255,255,.04));
+    }
+
+    .card-body{
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      padding:27px 26px 25px;
+    }
+
+    .category{
+      width:max-content;
+      max-width:100%;
+      margin-bottom:12px;
+      color:color-mix(in srgb,var(--card-accent) 76%,white);
+      font-size:11px;
+      font-weight:850;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+
+    .app-title{
+      margin:0 0 12px;
+      font-size:27px;
+      line-height:1.12;
+      letter-spacing:-.035em;
+    }
+
+    .app-description{
+      margin:0;
+      color:var(--muted);
+      line-height:1.62;
+      font-size:15px;
+    }
+
+    .card-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-top:auto;
+      padding-top:26px;
+      color:#dce2f3;
+      font-size:13px;
+      font-weight:780;
+    }
+
+    .card-footer span:first-child{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .card-footer span:first-child::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#72e1c2;
+      box-shadow:0 0 0 4px rgba(114,225,194,.09);
+    }
+
+    .card-footer .arrow{
+      color:var(--subtle);
+      font-size:18px;
+      transition:transform .25s ease,color .25s ease;
+    }
+
+    .app-card:hover .arrow,
+    .app-card:focus-visible .arrow{
+      color:#fff;
+      transform:translateX(4px);
+    }
+    .footer{
+      border-top:1px solid var(--line);
+      padding:31px 0 calc(31px + env(safe-area-inset-bottom));
+      color:var(--subtle);
+    }
+
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      font-size:13px;
+    }
+
+    .footer strong{
+      color:var(--muted);
+      font-weight:750;
+    }
+
+    .footer-link{
+      color:var(--muted);
+      text-decoration:none;
+    }
+
+    .footer-link:hover{color:#fff}
+
+    @media (max-width:980px){
+      .hero{padding-top:82px}
+      .hero-bottom{grid-template-columns:1fr}
+      .hero-stat{justify-self:start}
+      .app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media (max-width:660px){
+      .shell{width:min(var(--max),calc(100% - 26px))}
+      .site-header{position:relative}
+      .nav{min-height:68px}
+      .brand-copy span{display:none}
+      .nav-badge{font-size:12px}
+      .hero{padding:69px 0 47px}
+      h1{font-size:clamp(45px,15.5vw,66px)}
+      .hero-bottom{margin-top:25px;gap:24px}
+      .hero-stat strong{font-size:38px}
+      .app-grid{grid-template-columns:1fr}
+      .app-card{min-height:330px}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        scroll-behavior:auto!important;
+        transition-duration:.001ms!important;
+        animation-duration:.001ms!important;
+        animation-iteration-count:1!important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise" aria-hidden="true"></div>
+<main id="top">
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow">Meine iPhone-Apps</div>
+        <h1>Ideen, die den Alltag <span class="headline-accent">einfacher machen.</span></h1>
+
+        <div class="hero-bottom">
+          <p class="hero-lead">
+            Praktische Apps mit klarer Bedienung, einem konkreten Nutzen und Fokus auf Datenschutz.
+            Wähle eine App aus, um ihre individuelle Seite mit Funktionen, Einblicken, Hilfe und Downloadmöglichkeit in einem neuen Fenster zu öffnen.
+          </p>
+          <div class="hero-stat" aria-label="Anzahl veröffentlichter Apps">
+            <strong id="heroCount">8</strong>
+            <span>Apps<br>weitere folgen</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="apps-section" aria-labelledby="appsHeading">
+      <div class="shell">
+        <h2 id="appsHeading" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Alle Apps</h2>
+        <div class="app-grid" id="appGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <div>© 2026 <strong>Caspar Tietmeyer</strong>. Alle Rechte vorbehalten.</div>
+      <a class="footer-link" href="#top">Nach oben ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      Neue Apps lassen sich später einfach in dieser Liste ergänzen.
+      appId = numerische Apple-App-ID
+      pageUrl = individuelle GitHub-Pages-Seite der App
+    */
+    const apps = [
+      {
+        name: "Packklar",
+        category: "Reisen & Organisation",
+        description: "Packlisten, Vorlagen und Reisevorbereitung übersichtlich an einem Ort – lokal und ohne Konto.",
+        appId: "6790376779",
+        pageUrl: "https://djcasp.github.io/packklar/",
+        accent: "#57d58a",
+        symbol: "✓"
+      },
+      {
+        name: "FairShare",
+        category: "Finanzen & Gruppen",
+        description: "Gemeinsame Ausgaben fair aufteilen und mit möglichst wenigen Überweisungen ausgleichen.",
+        appId: "6788497614",
+        pageUrl: "https://djcasp.github.io/fairshare/",
+        accent: "#53d7cf",
+        symbol: "↔"
+      },
+      {
+        name: "Geburtstagsbimmel",
+        category: "Erinnerungen",
+        description: "Geburtstage rechtzeitig im Blick behalten – einfach, werbefrei und ohne Benutzerkonto.",
+        appId: "6789561727",
+        pageUrl: "https://djcasp.github.io/geburtstagsbimmel/",
+        accent: "#ff6c72",
+        symbol: "♢"
+      },
+      {
+        name: "Handover",
+        category: "Dokumentation",
+        description: "Übergaben mit Daten, Fotos, Notizen und einem professionellen PDF-Protokoll dokumentieren.",
+        appId: "6789969188",
+        pageUrl: "https://djcasp.github.io/handover/",
+        accent: "#f2bd55",
+        symbol: "H"
+      },
+      {
+        name: "Darlehensrechner",
+        category: "Finanzen",
+        description: "Darlehen berechnen, Tilgungspläne verstehen, Sondertilgungen planen und Berichte exportieren.",
+        appId: "6789173405",
+        pageUrl: "https://djcasp.github.io/darlehensrechner/",
+        accent: "#f19a35",
+        symbol: "%"
+      },
+      {
+        name: "Schrittweise",
+        category: "Anleitungen",
+        description: "Eigene Anleitungen mit verständlichen Schritten, Bildern, Markierungen und PDF-Ausgabe erstellen.",
+        appId: "6790096121",
+        pageUrl: "https://djcasp.github.io/schrittweise/",
+        accent: "#4f9cf9",
+        symbol: "1"
+      },
+      {
+        name: "Mijkje's Bridge",
+        category: "Karten & Lernen",
+        description: "Bridge spielen und üben – mit virtuellem Mitspieler, Reizung, Wertung und kompakten Erklärungen.",
+        appId: "6789504881",
+        pageUrl: "https://djcasp.github.io/mijkjesbridge/",
+        accent: "#9e7bff",
+        symbol: "♠"
+      },
+      {
+        name: "Vollzählig",
+        category: "Organisation & Sicherheit",
+        description: "Teilnehmer erfassen, Bringen und Abholen verfolgen und zuverlässige Zählrunden für betreute Gruppen durchführen.",
+        appId: "6791546708",
+        pageUrl: "https://djcasp.github.io/vollzaehlig/",
+        accent: "#65c9a5",
+        symbol: "✓"
+      }
+    ];
+
+    const grid = document.getElementById("appGrid");
+
+    const externalIcon = `
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M8 16 16.5 7.5M10 7h7v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+    function escapeHTML(value){
+      return value.replace(/[&<>"']/g, character => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      })[character]);
+    }
+
+    function createCard(app){
+      const searchable = `${app.name} ${app.category} ${app.description}`.toLowerCase();
+
+      const card = document.createElement("a");
+      card.className = "app-card";
+      card.href = app.pageUrl;
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+      card.setAttribute("aria-label", `Mehr über ${app.name} erfahren`);
+      card.dataset.search = searchable;
+      card.style.setProperty("--card-accent", app.accent);
+
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="icon-shell">
+            <div class="fallback-icon" aria-hidden="true">${escapeHTML(app.symbol)}</div>
+            <img
+              class="app-icon"
+              id="icon-${escapeHTML(app.appId)}"
+              alt="${escapeHTML(app.name)} App-Icon"
+              loading="lazy"
+              referrerpolicy="no-referrer">
+          </div>
+          <span class="external">${externalIcon}</span>
+        </div>
+        <div class="card-body">
+          <div class="category">${escapeHTML(app.category)}</div>
+          <h3 class="app-title">${escapeHTML(app.name)}</h3>
+          <p class="app-description">${escapeHTML(app.description)}</p>
+          <div class="card-footer">
+            <span>Mehr erfahren</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </div>
+        </div>`;
+
+      return card;
+    }
+
+    apps.forEach(app => grid.appendChild(createCard(app)));
+
+    document.getElementById("heroCount").textContent = apps.length;
+    /*
+      Apples Lookup API liefert die unveränderten offiziellen App-Icons.
+      JSONP vermeidet Cross-Origin-Probleme auf GitHub Pages.
+    */
+    function loadOfficialIcon(app){
+      const callbackName = `appleApp_${app.appId}`;
+      const script = document.createElement("script");
+      const timeout = window.setTimeout(cleanup, 8000);
+
+      function cleanup(){
+        window.clearTimeout(timeout);
+        script.remove();
+        try{ delete window[callbackName]; } catch(error){ window[callbackName] = undefined; }
+      }
+
+      window[callbackName] = function(payload){
+        try{
+          const result = payload && payload.results && payload.results[0];
+          const icon = document.getElementById(`icon-${app.appId}`);
+
+          if(result && icon){
+            const artwork = result.artworkUrl512 || result.artworkUrl100 || result.artworkUrl60;
+            if(artwork){
+              icon.addEventListener("load", () => icon.classList.add("loaded"), { once:true });
+              icon.src = artwork;
+            }
+          }
+        } finally {
+          cleanup();
+        }
+      };
+
+      script.async = true;
+      script.src = `https://itunes.apple.com/lookup?id=${encodeURIComponent(app.appId)}&country=de&callback=${callbackName}`;
+      script.onerror = cleanup;
+      document.head.appendChild(script);
+    }
+
+    apps.forEach(loadOfficialIcon);
+  </script>
+</body>
+</html>
